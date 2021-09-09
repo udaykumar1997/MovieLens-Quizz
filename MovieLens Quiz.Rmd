@@ -1,7 +1,9 @@
 ---
 title: "Harvard Data Science Professional Capstone Project - MovieLens Quizzes"
 author: "Uday Adusumilli"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -10,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 
+# setup code
 Create edx set, validation set (final hold-out test set)
 
 step 1
@@ -56,9 +59,9 @@ colnames(movies) <- c("movieId", "title", "genres")
 the following block will depend on the r version
 ```{r}
 # if using R 3.6 or earlier:
-movies <- as.data.frame(movies) %>% mutate(movieId = as.numeric(levels(movieId))[movieId],
-                                            title = as.character(title),
-                                            genres = as.character(genres))
+# movies <- as.data.frame(movies) %>% mutate(movieId = as.numeric(levels(movieId))[movieId],
+#                                             title = as.character(title),
+#                                             genres = as.character(genres))
 # if using R 4.0 or later:
 movies <- as.data.frame(movies) %>% mutate(movieId = as.numeric(movieId),
                                             title = as.character(title),
@@ -89,7 +92,7 @@ rm(dl, ratings, movies, test_index, temp, movielens, removed)
 ```
 
 
-## Quizzes
+# Actual Quizz Questions
 
 ### Q1
 
@@ -116,7 +119,7 @@ How many threes were given as ratings in the edx dataset?
 edx %>% filter(rating == 3) %>% tally()
 ```
 
-# Q3
+### Q3
 
 How many different movies are in the edx dataset?
 
@@ -125,7 +128,7 @@ How many different movies are in the edx dataset?
 n_distinct(edx$movieId)
 ```
 
-# Q4
+### Q4
 
 How many different users are in the edx dataset?
 
@@ -134,7 +137,7 @@ How many different users are in the edx dataset?
 n_distinct(edx$userId)
 ```
 
-# Q5
+### Q5
 
 How many movie ratings are in each of the following genres in the edx dataset?
 
@@ -146,7 +149,7 @@ edx %>% separate_rows(genres, sep = "\\|") %>%
   arrange(desc(count))
 ```
 
-# Q6
+### Q6
 
 Which movie has the greatest number of ratings?
 
@@ -156,7 +159,7 @@ edx %>% group_by(movieId, title) %>%
   arrange(desc(count))
 ```
 
-# Q7
+### Q7
 
 What are the five most given ratings in order from most to least?
 
@@ -166,7 +169,7 @@ edx %>% group_by(rating) %>% summarize(count = n()) %>% top_n(5) %>%
   arrange(desc(count))  
 ```
 
-# Q8
+### Q8
 
 True or False: In general, half star ratings are less common than 
 whole star ratings (e.g., there are fewer ratings of 3.5 than there 
@@ -180,3 +183,9 @@ edx %>%
   ggplot(aes(x = rating, y = count)) +
   geom_line()
 ```
+
+# h1
+## h2
+### h3
+#### h4
+regular line
